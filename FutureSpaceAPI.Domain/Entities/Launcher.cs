@@ -1,13 +1,13 @@
 ﻿namespace FutureSpaceAPI.Domain.Entities
 {
-    public class Launch
+    public class Launcher : Entity
     {
-        public string Id { get; set; }
         public string Url { get; set; }
         public int LaunchLibraryId { get; set; }
         public string Slug { get; set; }
         public string Name { get; set; }
         public Status Status { get; set; }
+        public DateTime ImportDate { get; set; }
         public DateTime Net { get; set; }
         public DateTime WindowEnd { get; set; }
         public DateTime WindowStart { get; set; }

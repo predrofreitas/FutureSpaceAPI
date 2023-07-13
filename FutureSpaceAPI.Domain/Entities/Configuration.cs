@@ -1,8 +1,7 @@
 ﻿namespace FutureSpaceAPI.Domain.Entities
 {
-    public class Configuration
+    public class Configuration : Entity
     {
-        public int Id { get; set; }
         public int LaunchLibraryId { get; set; }
         public string Url { get; set; }
         public string Name { get; set; }

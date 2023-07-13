@@ -1,8 +1,7 @@
 ﻿namespace FutureSpaceAPI.Domain.Entities
 {
-    public class Pad
+    public class Pad : Entity
     {
-        public int Id { get; set; }
         public string Url { get; set; }
         public int AgencyId { get; set; }
         public string Name { get; set; }

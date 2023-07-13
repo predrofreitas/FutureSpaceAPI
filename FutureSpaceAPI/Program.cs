@@ -1,4 +1,6 @@
-using FutureSpaceAPI.Data.ApplicationDbContext;
+using FutureSpaceAPI.Data;
+using FutureSpaceAPI.Data.Repositories;
+using FutureSpaceAPI.Domain.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,8 +11,13 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection")));
+    options.UseSqlite(
+        builder.Configuration.GetConnectionString("DevConnection"),
+        x => x.MigrationsAssembly("FutureSpaceAPI.Data")));
+
+builder.Services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
 
 var app = builder.Build();
 

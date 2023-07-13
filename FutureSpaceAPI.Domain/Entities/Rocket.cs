@@ -1,8 +1,7 @@
 ﻿namespace FutureSpaceAPI.Domain.Entities
 {
-    public class Rocket
+    public class Rocket : Entity
     {
-        public int Id { get; set; }
         public Configuration Configuration { get; set; }
     }
 }

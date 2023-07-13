@@ -1,8 +1,7 @@
 ﻿namespace FutureSpaceAPI.Domain.Entities
 {
-    public class Status
+    public class Status : Entity
     {
-        public int Id { get; set; }
         public string Name { get; set; }
     }
 }

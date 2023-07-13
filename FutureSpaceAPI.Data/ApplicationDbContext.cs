@@ -1,13 +1,13 @@
 ﻿using FutureSpaceAPI.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace FutureSpaceAPI.Data.ApplicationDbContext
+namespace FutureSpaceAPI.Data
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions options):base(options) { } 
-    
-        public DbSet<Launch> Launches { get; set; } 
+        public ApplicationDbContext(DbContextOptions options) : base(options) { }
+
+        public DbSet<Launcher> Launches { get; set; }
         public DbSet<LaunchServiceProvider> LaunchServiceProviders { get; set; }
         public DbSet<Configuration> Configurations { get; set; }
         public DbSet<Location> Locations { get; set; }
