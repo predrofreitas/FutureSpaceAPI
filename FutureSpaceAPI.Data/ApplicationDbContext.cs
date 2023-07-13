@@ -7,7 +7,7 @@ namespace FutureSpaceAPI.Data
     {
         public ApplicationDbContext(DbContextOptions options) : base(options) { }
 
-        public DbSet<Launcher> Launches { get; set; }
+        public DbSet<Launcher> Launchers { get; set; }
         public DbSet<LaunchServiceProvider> LaunchServiceProviders { get; set; }
         public DbSet<Configuration> Configurations { get; set; }
         public DbSet<Location> Locations { get; set; }
