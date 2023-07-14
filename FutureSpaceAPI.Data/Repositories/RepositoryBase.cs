@@ -43,9 +43,21 @@ namespace FutureSpaceAPI.Data.Repositories
             _dbSet.Remove(entity);
             await SaveChangesAsync();
         }
+
         public bool Exists(int id)
         {
             return _dbSet.Any(x => x.Id == id);
+        }
+
+        public async Task<List<TEntity>> GetLaunchersPagedAsync(int page, int pageSize)
+        {
+            int skipQuantity = (page - 1) * pageSize;
+
+            var entities = await _dbSet.Skip(skipQuantity)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return entities;
         }
 
         public async Task SaveChangesAsync()

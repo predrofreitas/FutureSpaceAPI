@@ -72,42 +72,13 @@ namespace FutureSpaceAPI.Controllers
             }
         }
 
-        //[HttpGet("{launchId}")]
-        //public IActionResult GetLauncher(int launchId)
-        //{
-        //    Launcher launcher = _launchers.Find(l => l.Id == launchId);
-        //    if (launcher == null)
-        //    {
-        //        return NotFound();
-        //    }
+        [HttpGet("{page}")]
+        public async Task<IActionResult> GetLaunchers(int page)
+        {
+            var query = new GetLaunchersQuery(page);
+            var launchers = await _mediator.Send(query);
 
-        //    return Ok(launcher);
-        //}
-
-        //[HttpGet]
-        //public IActionResult GetLaunchers(int page = 1, int pageSize = 10)
-        //{
-        //    int totalLaunchers = _launchers.Count;
-        //    int totalPages = (int)Math.Ceiling((double)totalLaunchers / pageSize);
-
-        //    if (page < 1 || page > totalPages)
-        //    {
-        //        return BadRequest("Invalid page number");
-        //    }
-
-        //    List<Launcher> pagedLaunchers = _launchers
-        //        .Skip((page - 1) * pageSize)
-        //        .Take(pageSize)
-        //        .ToList();
-
-        //    return Ok(new
-        //    {
-        //        TotalLaunchers = totalLaunchers,
-        //        TotalPages = totalPages,
-        //        Page = page,
-        //        PageSize = pageSize,
-        //        Launchers = pagedLaunchers
-        //    });
-        //}
+            return Ok(launchers);
+        }
     }
 }
