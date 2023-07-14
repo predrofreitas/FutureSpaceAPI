@@ -15,15 +15,42 @@ namespace FutureSpaceAPI.Data.Repositories
             _dbSet = appDbContext.Set<TEntity>();
         }
 
-        public virtual IQueryable<TEntity> List()
+        public async Task UpdateAsync(TEntity entity)
         {
-            return _dbSet;
+            _dbSet.Update(entity);
+            await _appDbContext.SaveChangesAsync();
         }
 
-        public virtual void Create(TEntity entity)
+        public async Task InsertAsync(TEntity entity)
         {
-            _dbSet.Add(entity);
+            _dbSet.Attach(entity);
+            _appDbContext.Entry(entity).State = EntityState.Added;
+            await SaveChangesAsync();
         }
 
+        public async Task<TEntity> GetByIdAsync(int id)
+        {
+            return await _dbSet.FindAsync(id);
+        }
+
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
+        {
+            return await _dbSet.ToListAsync();
+        }
+
+        public async Task DeleteAsync(TEntity entity)
+        {
+            _dbSet.Remove(entity);
+            await SaveChangesAsync();
+        }
+        public bool Exists(int id)
+        {
+            return _dbSet.Any(x => x.Id == id);
+        }
+
+        public async Task SaveChangesAsync()
+        {
+            await _appDbContext.SaveChangesAsync();
+        }
     }
 }
