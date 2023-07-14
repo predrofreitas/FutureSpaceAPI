@@ -8,6 +8,7 @@ namespace FutureSpaceAPI.Domain.Interfaces.Repositories
         Task<TEntity> GetByIdAsync(int id);
         Task DeleteAsync(TEntity entity);
         bool Exists(int id);
+        Task<List<TEntity>> GetEntitiesPagedAsync(int page, int pageSize);
         Task SaveChangesAsync();
     }
 }

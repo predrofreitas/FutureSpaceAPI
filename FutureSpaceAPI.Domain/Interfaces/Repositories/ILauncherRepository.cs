@@ -8,6 +8,7 @@ namespace FutureSpaceAPI.Domain.Interfaces.Repositories
         Task<Launcher> GetByIdAsync(int id);
         Task DeleteAsync(Launcher launcher);
         bool Exists(int id);
+        Task<List<Launcher>> GetLaunchersPagedAsync(int page, int pageSize);
         Task SaveChangesAsync();
     }
 }

@@ -4,6 +4,6 @@ namespace FutureSpaceAPI.Domain.Interfaces.Services
 {
     public interface ILauncherService
     {
-        Task<Launcher> GetLauncher(int launchId);
+        Task<List<Launcher>> GetLaunchersByPageAsync(int offset);
     }
 }

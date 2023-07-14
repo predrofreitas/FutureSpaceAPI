@@ -49,7 +49,7 @@ namespace FutureSpaceAPI.Data.Repositories
             return _dbSet.Any(x => x.Id == id);
         }
 
-        public async Task<List<TEntity>> GetLaunchersPagedAsync(int page, int pageSize)
+        public async Task<List<TEntity>> GetEntitiesPagedAsync(int page, int pageSize)
         {
             int skipQuantity = (page - 1) * pageSize;
 
