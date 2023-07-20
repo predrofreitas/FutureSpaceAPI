@@ -1,10 +1,9 @@
-﻿using FutureSpaceAPI.Domain.Entities;
-using FutureSpaceAPI.Domain.Interfaces.Repositories;
+﻿using FutureSpaceAPI.Domain.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace FutureSpaceAPI.Data.Repositories
 {
-    public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : Entity
+    public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class
     {
         private readonly DbSet<TEntity> _dbSet;
         private readonly ApplicationDbContext _appDbContext;
@@ -28,7 +27,13 @@ namespace FutureSpaceAPI.Data.Repositories
             await SaveChangesAsync();
         }
 
-        public async Task<TEntity> GetByIdAsync(int id)
+        public async Task InsertInRangeAsync(List<TEntity> entities)
+        {
+            _appDbContext.AddRange(entities);
+            await SaveChangesAsync();
+        }
+
+        public async Task<TEntity> GetByIdAsync(Guid id)
         {
             return await _dbSet.FindAsync(id);
         }
@@ -44,25 +49,14 @@ namespace FutureSpaceAPI.Data.Repositories
             await SaveChangesAsync();
         }
 
-        public bool Exists(int id)
-        {
-            return _dbSet.Any(x => x.Id == id);
-        }
-
-        public async Task<List<TEntity>> GetEntitiesPagedAsync(int page, int pageSize)
-        {
-            int skipQuantity = (page - 1) * pageSize;
-
-            var entities = await _dbSet.Skip(skipQuantity)
-                .Take(pageSize)
-                .ToListAsync();
-
-            return entities;
-        }
-
         public async Task SaveChangesAsync()
         {
             await _appDbContext.SaveChangesAsync();
+        }
+
+        public bool Exists(Guid id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

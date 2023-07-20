@@ -1,16 +1,17 @@
 ﻿using FutureSpaceAPI.Domain.Entities;
 using FutureSpaceAPI.Domain.Interfaces.Repositories;
-using Microsoft.EntityFrameworkCore;
 
 namespace FutureSpaceAPI.Data.Repositories
 {
     public class LauncherRepository : ILauncherRepository
     {
         private readonly IRepositoryBase<Launcher> _repositoryBase;
+        private readonly ApplicationDbContext _appDbContext;
 
-        public LauncherRepository(IRepositoryBase<Launcher> repositoryBase)
+        public LauncherRepository(IRepositoryBase<Launcher> repositoryBase, ApplicationDbContext appDbContext)
         {
             _repositoryBase = repositoryBase;
+            _appDbContext = appDbContext;
         }
 
         public async Task DeleteAsync(Launcher launcher)
@@ -18,12 +19,12 @@ namespace FutureSpaceAPI.Data.Repositories
             await _repositoryBase.DeleteAsync(launcher);
         }
 
-        public bool Exists(int id)
+        public bool Exists(Guid id)
         {
             return _repositoryBase.Exists(id); ;
         }
 
-        public async Task<Launcher> GetByIdAsync(int id)
+        public async Task<Launcher> GetByIdAsync(Guid id)
         {
             return await _repositoryBase.GetByIdAsync(id);
         }
@@ -32,21 +33,27 @@ namespace FutureSpaceAPI.Data.Repositories
         {
             await _repositoryBase.InsertAsync(launcher); 
         }
-        public async Task<List<Launcher>> GetLaunchersPagedAsync(int page, int pageSize)
+
+        public async Task<IQueryable<Launcher>> GetAllLaunchersQueryable()
         {
-            int skip = (page - 1) * pageSize;
+            IQueryable<Launcher> launchersQuery = _appDbContext.Launchers;
 
-            var launchers = await _dbContext.Launchers
-                .Skip(skip)
-                .Take(pageSize)
-                .ToListAsync();
-
-            return launchers;
+            return launchersQuery;
         }
 
         public async Task SaveChangesAsync()
         {
             await _repositoryBase.SaveChangesAsync();
+        }
+
+        public async Task InsertInRangeAsync(List<Launcher> launchers)
+        {
+            await _repositoryBase.InsertInRangeAsync(launchers);
+        }
+
+        public async Task UpdateAsync(Launcher launcher)
+        {
+            await _repositoryBase.UpdateAsync(launcher);
         }
     }
 }

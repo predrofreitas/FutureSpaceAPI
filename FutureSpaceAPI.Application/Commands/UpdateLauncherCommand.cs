@@ -1,17 +1,18 @@
-﻿using FutureSpaceAPI.Domain.Entities;
+﻿using FutureSpaceAPI.Application.Responses;
+using FutureSpaceAPI.Domain.Entities;
 using MediatR;
 
 namespace FutureSpaceAPI.Application.Commands
 {
-    public class UpdateLauncherCommand : IRequest<Launcher>
+    public class UpdateLauncherCommand : IRequest<LauncherResponse>
     {
-        public int LauncherId { get; private set; }
-        public Launcher Launcher { get; private set; }
+        public Guid LauncherId { get; private set; }
+        public Launch Launch { get; private set; }
 
-        public UpdateLauncherCommand(int launcherId, Launcher launcher)
+        public UpdateLauncherCommand(Guid launcherId, Launch launch)
         {
             LauncherId = launcherId;
-            Launcher = launcher;
+            Launch = launch;
         }
     }
 }

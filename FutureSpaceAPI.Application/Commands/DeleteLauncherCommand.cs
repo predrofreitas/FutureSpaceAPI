@@ -3,11 +3,11 @@ using MediatR;
 
 namespace FutureSpaceAPI.Application.Commands
 {
-    public class DeleteLauncherCommand : IRequest<Launcher>
+    public class DeleteLauncherCommand : IRequest<bool>
     {
-        public int LauncherId { get; private set; }
+        public Guid LauncherId { get; private set; }
 
-        public DeleteLauncherCommand(int launcherId)
+        public DeleteLauncherCommand(Guid launcherId)
         {
             LauncherId = launcherId;
         }

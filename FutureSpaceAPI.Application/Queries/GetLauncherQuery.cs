@@ -1,13 +1,14 @@
-﻿using FutureSpaceAPI.Domain.Entities;
+﻿using FutureSpaceAPI.Application.Responses;
+using FutureSpaceAPI.Domain.Entities;
 using MediatR;
 
 namespace FutureSpaceAPI.Application.Queries
 {
-    public class GetLauncherQuery : IRequest<Launcher>
+    public class GetLauncherQuery : IRequest<LauncherResponse>
     {
-        public int LauncherId { get; private set; }
+        public Guid LauncherId { get; private set; }
 
-        public GetLauncherQuery(int launcherId)
+        public GetLauncherQuery(Guid launcherId)
         {
             LauncherId = launcherId;
         }

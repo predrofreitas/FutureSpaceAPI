@@ -1,11 +1,11 @@
 ﻿using FutureSpaceAPI.Application.Queries;
-using FutureSpaceAPI.Domain.Entities;
+using FutureSpaceAPI.Application.Responses;
 using FutureSpaceAPI.Domain.Interfaces.Repositories;
 using MediatR;
 
 namespace FutureSpaceAPI.Application.Handlers
 {
-    public class GetLauncherHandler : IRequestHandler<GetLauncherQuery, Launcher>
+    public class GetLauncherHandler : IRequestHandler<GetLauncherQuery, LauncherResponse>
     {
         private readonly ILauncherRepository _launcherRepository;
 
@@ -14,7 +14,7 @@ namespace FutureSpaceAPI.Application.Handlers
             _launcherRepository = launcherRepository;
         }
 
-        public async Task<Launcher> Handle(GetLauncherQuery query, CancellationToken cancellationToken)
+        public async Task<LauncherResponse> Handle(GetLauncherQuery query, CancellationToken cancellationToken)
         {
             var launcher = await _launcherRepository.GetByIdAsync(query.LauncherId);
 
@@ -23,7 +23,7 @@ namespace FutureSpaceAPI.Application.Handlers
                 return null;
             }
 
-            return launcher;
+            return new LauncherResponse(launcher.ImportDate, launcher.LaunchJson);
         }
     }
 }

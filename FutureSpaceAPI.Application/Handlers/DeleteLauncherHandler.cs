@@ -1,11 +1,10 @@
 ﻿using FutureSpaceAPI.Application.Commands;
-using FutureSpaceAPI.Domain.Entities;
 using FutureSpaceAPI.Domain.Interfaces.Repositories;
 using MediatR;
 
 namespace FutureSpaceAPI.Application.Handlers
 {
-    public class DeleteLauncherHandler : IRequestHandler<DeleteLauncherCommand, Launcher>
+    public class DeleteLauncherHandler : IRequestHandler<DeleteLauncherCommand, bool>
     {
         private readonly ILauncherRepository _launcherRepository;
 
@@ -14,18 +13,18 @@ namespace FutureSpaceAPI.Application.Handlers
             _launcherRepository = launcherRepository;
         }
 
-        public async Task<Launcher> Handle(DeleteLauncherCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(DeleteLauncherCommand request, CancellationToken cancellationToken)
         {
             var launcher = await _launcherRepository.GetByIdAsync(request.LauncherId);
 
             if (launcher is null)
             {
-                return null;
+                return false;
             }
 
             await _launcherRepository.DeleteAsync(launcher);
 
-            return launcher;
+            return true;
         }
     }
 }

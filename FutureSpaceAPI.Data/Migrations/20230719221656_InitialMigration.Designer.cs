@@ -3,6 +3,7 @@ using System;
 using FutureSpaceAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FutureSpaceAPI.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230719221656_InitialMigration")]
+    partial class InitialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.9");
@@ -20,9 +23,6 @@ namespace FutureSpaceAPI.Data.Migrations
             modelBuilder.Entity("FutureSpaceAPI.Domain.Entities.Launcher", b =>
                 {
                     b.Property<Guid>("LaunchId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("ImportDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("LaunchJson")

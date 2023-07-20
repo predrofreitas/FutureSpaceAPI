@@ -2,13 +2,14 @@
 
 namespace FutureSpaceAPI.Domain.Interfaces.Repositories
 {
-    public interface IRepositoryBase<TEntity> where TEntity : Entity
+    public interface IRepositoryBase<TEntity> where TEntity : class
     {
         Task InsertAsync(TEntity launcher);
-        Task<TEntity> GetByIdAsync(int id);
+        Task InsertInRangeAsync(List<TEntity> entities);
+        Task UpdateAsync(TEntity entity);
+        Task<TEntity> GetByIdAsync(Guid id);
         Task DeleteAsync(TEntity entity);
-        bool Exists(int id);
-        Task<List<TEntity>> GetEntitiesPagedAsync(int page, int pageSize);
+        bool Exists(Guid id);
         Task SaveChangesAsync();
     }
 }

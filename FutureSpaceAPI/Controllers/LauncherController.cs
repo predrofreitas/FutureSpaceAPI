@@ -1,5 +1,6 @@
 ﻿using FutureSpaceAPI.Application.Commands;
 using FutureSpaceAPI.Application.Queries;
+using FutureSpaceAPI.Application.Responses;
 using FutureSpaceAPI.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -24,47 +25,47 @@ namespace FutureSpaceAPI.Controllers
         }
 
         [HttpGet("{launcherId}")]
-        public async Task<IActionResult> GetLauncher(int launcherId)
+        public async Task<IActionResult> GetLauncher(Guid launcherId)
         {
             var query = new GetLauncherQuery(launcherId);
-            Launcher launcher = await _mediator.Send(query);
+            LauncherResponse response = await _mediator.Send(query);
 
-            if(launcher is null)
+            if(response is null)
             {
                 NotFound();
             }
 
-            return Ok(launcher);
+            return Ok(response);
         }
 
         [HttpPut("{launchId}")]
-        public async Task<IActionResult> UpdateLauncher(int launchId, [FromBody]Launcher updatedLauncher)
+        public async Task<IActionResult> UpdateLauncher(Guid launchId, [FromBody]Launch updatedLaunch)
         {
-            var command = new UpdateLauncherCommand(launchId, updatedLauncher);
-            var launcher = await _mediator.Send(command);
+            var command = new UpdateLauncherCommand(launchId, updatedLaunch);
+            var response = await _mediator.Send(command);
 
-            if(launcher is null)
+            if(response is null)
             {
                 NotFound();
             }
 
-            return Ok(launcher);
+            return Ok(response);
         }
 
         [HttpDelete("{launchId}")]
-        public async Task<IActionResult> DeleteLauncher(int launchId)
+        public async Task<IActionResult> DeleteLauncher(Guid launchId)
         {
             try
             {
                 var command = new DeleteLauncherCommand(launchId);
-                var launcher = await _mediator.Send(command);
+                var response = await _mediator.Send(command);
 
-                if (launcher is null)
+                if (response is false)
                 {
                     NotFound();
                 }
 
-                return Ok(launcher);
+                return Ok();
             }
             catch (Exception ex)
             {
@@ -72,13 +73,16 @@ namespace FutureSpaceAPI.Controllers
             }
         }
 
-        [HttpGet("{page}")]
-        public async Task<IActionResult> GetLaunchers(int page)
+        [HttpGet]
+        [Route("launchers")]
+        public async Task<IActionResult> GetLaunchers(
+            [FromQuery] int page,
+            [FromQuery] int pageSize)
         {
-            var query = new GetLaunchersQuery(page);
-            var launchers = await _mediator.Send(query);
+            var query = new GetAllLaunchersQuery(page, pageSize);
+            var response = await _mediator.Send(query);
 
-            return Ok(launchers);
+            return Ok(response);
         }
     }
 }

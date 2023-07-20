@@ -1,18 +1,19 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace FutureSpaceAPI.Domain.Entities
 {
-    public class Location : Entity
+    public class Location
     {
-        public string Url { get; set; }
+        public int Id { get; set; }
+        public string? Url { get; set; }
         public string Name { get; set; }
-        [JsonPropertyName("country_code")]
+        [JsonProperty("country_code")]
         public string CountryCode { get; set; }
-        [JsonPropertyName("map_image")]
+        [JsonProperty("map_image")]
         public string MapImage { get; set; }
-        [JsonPropertyName("total_launch_count")]
+        [JsonProperty("total_launch_count")]
         public int TotalLaunchCount { get; set; }
-        [JsonPropertyName("total_landing_count")]
+        [JsonProperty("total_landing_count")]
         public int TotalLandingCount { get; set; }
     }
 }
