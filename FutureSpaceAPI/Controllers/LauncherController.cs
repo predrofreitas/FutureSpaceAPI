@@ -118,7 +118,7 @@ namespace FutureSpaceAPI.Controllers
         [Route("RecurringJob")]
         public void RecurringJobs()
         {
-            RecurringJob.AddOrUpdate<ILauncherService>(x => x.Execute(), Cron.Minutely);
+            RecurringJob.AddOrUpdate<ILauncherService>(x => x.Execute(), Cron.Daily);
             return;
         }
     }
