@@ -2,6 +2,9 @@
 using FutureSpaceAPI.Application.Queries;
 using FutureSpaceAPI.Application.Responses;
 using FutureSpaceAPI.Domain.Entities;
+using FutureSpaceAPI.Domain.Interfaces.Services;
+using FutureSpaceAPI.Hangfire;
+using Hangfire;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -83,6 +86,14 @@ namespace FutureSpaceAPI.Controllers
             var response = await _mediator.Send(query);
 
             return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("RecurringJob")]
+        public void RecurringJobs()
+        {
+            RecurringJob.AddOrUpdate<ILauncherService>(x => x.Execute(), Cron.Minutely);
+            return;
         }
     }
 }
