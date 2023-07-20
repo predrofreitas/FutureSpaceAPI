@@ -3,7 +3,7 @@ using FutureSpaceAPI.Application.Queries;
 using FutureSpaceAPI.Application.Responses;
 using FutureSpaceAPI.Domain.Entities;
 using FutureSpaceAPI.Domain.Interfaces.Services;
-using FutureSpaceAPI.Hangfire;
+using FutureSpaceAPI.Middlewares;
 using Hangfire;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FutureSpaceAPI.Controllers
 {
     [ApiController]
+    [ApiKeyAuth]
     [Route("[controller]")]
     public class LauncherController : ControllerBase
     {
