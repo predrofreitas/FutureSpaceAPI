@@ -236,84 +236,149 @@ Parâmetros:
 
 Exemplo de Requisição:
 ```http
-GET /launcher/launchers?page=1&pageSize=10
+GET /launcher/launchers?page=1&pageSize=2
 ```
 
 Exemplo de Resposta (200 OK):
 ```json
 {
-    "totalItems": 50,
-    "currentPage": 1,
-    "pageSize": 10,
-    "launchers": [
-        {
-           "id": "9279744e-46b2-4eca-adea-f1379672ec81",
-           "url": "https://ll.thespacedevs.com/2.2.0/launch/9279744e-46b2-4eca-adea-f1379672ec81/",
-           "launch_library_id": 1829,
-           "slug": "atlas-lv-3a-samos-2",
-           "name": "Atlas LV-3A | Samos 2",
-           "status": {
-             "id": 3,
-             "name": "Success"
-           },
-           "net": "1961-01-31T20:21:19Z",
-           "window_end": "1961-01-31T20:21:19Z",
-           "window_start": "1961-01-31T20:21:19Z",
-           "inhold": false,
-           "tbdtime": false,
-           "tbddate": false,
-           "probability": 0,
-           "holdreason": "",
-           "failreason": "",
-           "hashtag": "",
-           "launch_service_provider": {
-             "id": 161,
-             "url": "https://ll.thespacedevs.com/2.2.0/agencies/161/",
-             "name": "United States Air Force",
-             "type": "Government"
-           },
-           "rocket": {
-             "id": 2362,
-             "configuration": {
-               "id": 183,
-               "launch_library_id": 193,
-               "url": "https://ll.thespacedevs.com/2.2.0/config/launcher/183/",
-               "name": "Atlas Agena B",
-               "family": "Atlas",
-               "full_name": "Atlas LV-3 Agena B",
-               "variant": "LV-3 Agena B"
-             }
-           },
-           "mission": null,
-           "pad": {
-             "id": 93,
-             "url": "https://ll.thespacedevs.com/2.2.0/pad/93/",
-             "agency_id": 161,
-             "name": "Space Launch Complex 3W",
-             "info_url": null,
-             "wiki_url": "",
-             "map_url": "http://maps.google.com/maps?q=34.644+N,+120.593+W",
-             "latitude": "34.644",
-             "longitude": "-120.593",
-             "location": {
-               "id": 11,
-               "url": "https://ll.thespacedevs.com/2.2.0/location/11/",
-               "name": "Vandenberg AFB, CA, USA",
-               "country_code": "USA",
-               "map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_11_20200803142416.jpg",
-               "total_launch_count": 83,
-               "total_landing_count": 3
-             },
-             "map_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_93_20200803143225.jpg",
-             "total_launch_count": 3
-           },
-           "webcast_live": false,
-           "image": null,
-           "infographic": null,
-           "program": []
-      },
-        // Mais lançadores...
-    ]
+  "totalCount": 210,
+  "page": 1,
+  "pageSize": 2,
+  "items": [
+    {
+      "importDate": "2023-07-19T20:06:33.8622551",
+      "launch": {
+        "id": "31bcb852-0c9f-4f1f-a201-a108c88e77f8",
+        "url": "https://ll.thespacedevs.com/2.0.0/launch/31bcb852-0c9f-4f1f-a201-a108c88e77f8/",
+        "launchLibraryId": null,
+        "slug": "project-pilot-nots-4",
+        "name": "Project Pilot | NOTS 4",
+        "status": {
+          "id": 4,
+          "name": "Failure"
+        },
+        "net": "1958-08-25T00:00:00Z",
+        "windowEnd": "1958-08-25T00:00:00Z",
+        "windowStart": "1958-08-25T00:00:00Z",
+        "inHold": false,
+        "tbdTime": false,
+        "tbdDate": false,
+        "probability": null,
+        "holdReason": null,
+        "failReason": null,
+        "hashtag": null,
+        "launchServiceProvider": {
+          "id": 166,
+          "url": "https://ll.thespacedevs.com/2.0.0/agencies/166/",
+          "name": "US Navy",
+          "type": "Government"
+        },
+        "rocket": {
+          "id": 3022,
+          "configuration": {
+            "id": 344,
+            "launchLibraryId": null,
+            "url": "https://ll.thespacedevs.com/2.0.0/config/launcher/344/",
+            "name": "Project Pilot",
+            "family": "",
+            "fullName": "Project Pilot",
+            "variant": ""
+          }
+        },
+        "pad": {
+          "id": 145,
+          "url": "https://ll.thespacedevs.com/2.0.0/pad/145/",
+          "agencyId": null,
+          "name": "Naval Air Weapons Station China Lake",
+          "infoUrl": null,
+          "wikiUrl": "https://en.wikipedia.org/wiki/Naval_Air_Weapons_Station_China_Lake",
+          "mapUrl": "https://www.google.com/maps?q=35.6855556,-117.6941384",
+          "latitude": "35.6855556",
+          "longitude": "-117.6941384",
+          "location": {
+            "id": 144,
+            "url": "https://ll.thespacedevs.com/2.0.0/location/144/",
+            "name": "Air launch to Suborbital flight",
+            "countryCode": "",
+            "mapImage": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_144_20200803142439.jpg",
+            "totalLaunchCount": 80,
+            "totalLandingCount": 0
+          },
+          "mapImage": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_145_20200803143330.jpg",
+          "totalLaunchCount": 0
+        },
+        "webcastLive": false,
+        "image": null
+      }
+    },
+    {
+      "importDate": "2023-07-19T20:06:33.861831",
+      "launch": {
+        "id": "5408eda7-a3cc-48d2-9a62-e77a3cf86bc1",
+        "url": "https://ll.thespacedevs.com/2.0.0/launch/5408eda7-a3cc-48d2-9a62-e77a3cf86bc1/",
+        "launchLibraryId": null,
+        "slug": "thor-able-i-able-i-pioneer",
+        "name": "Thor Able I | Able I (Pioneer)",
+        "status": {
+          "id": 4,
+          "name": "Failure"
+        },
+        "net": "1958-08-17T12:18:00Z",
+        "windowEnd": "1958-08-17T12:18:00Z",
+        "windowStart": "1958-08-17T12:18:00Z",
+        "inHold": false,
+        "tbdTime": false,
+        "tbdDate": false,
+        "probability": null,
+        "holdReason": null,
+        "failReason": null,
+        "hashtag": null,
+        "launchServiceProvider": {
+          "id": 271,
+          "url": "https://ll.thespacedevs.com/2.0.0/agencies/271/",
+          "name": "Army Ballistic Missile Agency",
+          "type": "Government"
+        },
+        "rocket": {
+          "id": 3019,
+          "configuration": {
+            "id": 388,
+            "launchLibraryId": null,
+            "url": "https://ll.thespacedevs.com/2.0.0/config/launcher/388/",
+            "name": "Thor Able I",
+            "family": "Thor",
+            "fullName": "Thor Able I",
+            "variant": "Able I"
+          }
+        },
+        "pad": {
+          "id": 14,
+          "url": "https://ll.thespacedevs.com/2.0.0/pad/14/",
+          "agencyId": null,
+          "name": "Space Launch Complex 17A",
+          "infoUrl": null,
+          "wikiUrl": "https://en.wikipedia.org/wiki/Cape_Canaveral_Space_Launch_Complex_17",
+          "mapUrl": "https://www.google.com/maps?q=28.4472,-80.565",
+          "latitude": "28.4472",
+          "longitude": "-80.565",
+          "location": {
+            "id": 12,
+            "url": "https://ll.thespacedevs.com/2.0.0/location/12/",
+            "name": "Cape Canaveral, FL, USA",
+            "countryCode": "USA",
+            "mapImage": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/location_12_20200803142519.jpg",
+            "totalLaunchCount": 896,
+            "totalLandingCount": 34
+          },
+          "mapImage": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/pad_14_20200803143451.jpg",
+          "totalLaunchCount": 0
+        },
+        "webcastLive": false,
+        "image": null
+      }
+    }
+  ]
 }
 ```
 
